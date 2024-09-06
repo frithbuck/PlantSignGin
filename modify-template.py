@@ -87,7 +87,7 @@ def process_data(template_path, data, batch_dir):
     return f"Processed {count} files."
 
 @app.route('/process', methods=['POST'])
-def process_template():
+def app():
     if 'template' not in request.files or 'data' not in request.files:
         return jsonify({"error": "Template or data file missing"}), 400
 
