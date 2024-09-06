@@ -1,55 +1,56 @@
-┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│   Basic Concept                                                                                                                  │
-│                                                                                             ┌────►  Purple.html                  │
-│                                                                                             │      ┌──────────────┐              │
-│                                                                                             │      │              │              │
-│                                                                                             │      │ Purple       │              │
-│                                                                                             │      │              │              │
-│                                                                                             │      │ Grape        │              │
-│                                                                                             │      │              │              │
-│                                                                                             │      │ Item_3       │              │
-│                                                                                             │      │              │              │
-│                                                                                             │      │ Item_n       │              │
-│                                                                                             │      └──────────────┘              │
-│                                                                                             │                                    │
-│                                                                                             │  ┌──► Red.html                     │
-│                                                                                             │  │   ┌──────────────┐              │
-│                              workingdata.csv                                                │  │   │              │              │
-│                             ┌──────────────────────────────────────────────────────────┐    │  │   │ Red          │              │
-│                             │Color, Fruit, Placeholder_3, Placeholder_n, ...           │    │  │   │              │              │
-│     template.html           │                                                          │    │  │   │ Apple        │              │
-│    ┌──────────────┐         │Purple, Grape, Item_3, Item_n                             ├────┘  │   │              │              │
-│    │              │         │                                                          │       │   │ Item_3       │              │
-│    │~Color        │         │Red, Apple, Item_3, Item_n                                ├───────┘   │              │              │
-│    │              │         │                                                          │           │ Item_n       │              │
-│    │~Placeholder_2│ ────►   │Green, Pear, Item_3, Item_n                               ├────────┐  └──────────────┘              │
-│    │              │         │                                                          │        │                                │
-│    │~Placeholder_3│         │Yellow, Banana, Item_3, Item_n                            ├───────┐└─► Green.html                   │
-│    │              │         │                               .                          │       │   ┌──────────────┐              │
-│    │~Placeholder_n│         │ .                               .                        ├────┐  │   │              │              │
-│    └──────────────┘         │ .                                 .                      │    │  │   │ Green        │              │
-│                             │ .                                                        │    │  │   │              │              │
-│                             │                                                          │    │  │   │ Pear         │              │
-│                             └──────────────────────────────────────────────────────────┘    │  │   │              │              │
-│                                                                                             │  │   │ Item_3       │              │
-│                                                                                             │  │   │              │              │
-│                                                                                             │  │   │ Item_n       │              │
-│                                                                                             │  │   └──────────────┘              │
-│                                                                                             │  │                                 │
-│                                                                                             │  └──► Yellow.html                  │
-│                                                                                             │      ┌──────────────┐              │
-│                                                                                             │      │              │              │
-│                                                                                             │      │ Yellow       │              │
-│                                                                                             │      │              │              │
-│                                                                                             ▼      │ Banana       │              │
-│                                                                                             .      │              │              │
-│                                                                                             .      │ Item_3       │              │
-│                                                                                             .      │              │              │
-│                                                                                                    │ Item_n       │              │
-│                                                                                                    └──────────────┘              │
-│                                                                                                                                  │
-│                                                                                                                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│   Basic Concept                                                                                                     │
+│                                                                                             ┌────►  Purple.html     │
+│                                                                                             │      ┌──────────────┐ │
+│                                                                                             │      │              │ │
+│                                                                                             │      │ Purple       │ │
+│                                                                                             │      │              │ │
+│                                                                                             │      │ Grape        │ │
+│                                                                                             │      │              │ │
+│                                                                                             │      │ Item_3       │ │
+│                                                                                             │      │              │ │
+│                                                                                             │      │ Item_n       │ │
+│                                                                                             │      └──────────────┘ │
+│                                                                                             │                       │
+│                                                                                             │  ┌──► Red.html        │
+│                                                                                             │  │   ┌──────────────┐ │
+│                              workingdata.csv                                                │  │   │              │ │
+│                             ┌──────────────────────────────────────────────────────────┐    │  │   │ Red          │ │
+│                             │Color, Fruit, Placeholder_3, Placeholder_n, ...           │    │  │   │              │ │
+│     template.html           │                                                          │    │  │   │ Apple        │ │
+│    ┌──────────────┐         │Purple, Grape, Item_3, Item_n                             ├────┘  │   │              │ │
+│    │              │         │                                                          │       │   │ Item_3       │ │
+│    │~Color        │         │Red, Apple, Item_3, Item_n                                ├───────┘   │              │ │
+│    │              │         │                                                          │           │ Item_n       │ │
+│    │~Placeholder_2│ ────►   │Green, Pear, Item_3, Item_n                               ├────────┐  └──────────────┘ │
+│    │              │         │                                                          │        │                   │
+│    │~Placeholder_3│         │Yellow, Banana, Item_3, Item_n                            ├───────┐└─► Green.html      │
+│    │              │         │                               .                          │       │   ┌──────────────┐ │
+│    │~Placeholder_n│         │ .                               .                        ├────┐  │   │              │ │
+│    └──────────────┘         │ .                                 .                      │    │  │   │ Green        │ │
+│                             │ .                                                        │    │  │   │              │ │
+│                             │                                                          │    │  │   │ Pear         │ │
+│                             └──────────────────────────────────────────────────────────┘    │  │   │              │ │
+│                                                                                             │  │   │ Item_3       │ │
+│                                                                                             │  │   │              │ │
+│                                                                                             │  │   │ Item_n       │ │
+│                                                                                             │  │   └──────────────┘ │
+│                                                                                             │  │                    │
+│                                                                                             │  └──► Yellow.html     │
+│                                                                                             │      ┌──────────────┐ │
+│                                                                                             │      │              │ │
+│                                                                                             │      │ Yellow       │ │
+│                                                                                             │      │              │ │
+│                                                                                             ▼      │ Banana       │ │
+│                                                                                             .      │              │ │
+│                                                                                             .      │ Item_3       │ │
+│                                                                                             .      │              │ │
+│                                                                                                    │ Item_n       │ │
+│                                                                                                    └──────────────┘ │
+│                                                                                                                     │
+│                                                                                                                     │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 
 CSV Format
 Any spreadsheet software worth its salt will export to .csv, Use whichever you prefer. The first row (called row "0" in Python) is your column headers. They
@@ -80,45 +81,64 @@ For images, the placeholder should be in the source ("src") argument:
 Note that the program only reads and copies the template. It does not edit the template itself.
 
 Program Flow
-┌─────────────────────────┐┌───────────────────────────┐┌──────────────────────┐
-│template_path            ││data_path                  ││output_path           │
-│(default="template.html")││(default="workingdata.csv")││(default="___TEST___")│
-└─┬───────────────────────┘└──┬────────────────────────┘└──┬───────────────────┘
-  │                           │                            │
-  │   ┌───────────────────────┘                            │
-  │   │                                                    │
-  │   │   ┌────────────────────────────────────────────────┘
-  │   │   │
-  ▼   ▼   ▼
-┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│ main                                                                                                   │
-│                                                                                                        │
-│ Open data_path and load to nested list called data[]                                                   │
-│                                                                                                        │
-│ For each row in data (starting from the second row, i.e. data[1], not data[0])                         │
-│                                                                                                        │
-│     Make a copy of template_path and name it after the first item  in the current row (i.e data[i][0]) │    ┌──────────────────────┐
-│                                                                                                        │  ┌►│ url_to_data_uri      │
-│     For each item in the current row                                                                   │  │ │                      │  ┌─────────────────────────┐
-│                                                                                                        │  │ │ Check is_image_url◄──│──│─►  is_image_url         │
-│         Fetch any linked images using url_to_data_uri ─────────────────────────────────────────────────│──┘ │                      │  │                         │
-│                                                                                                        │    │ Fetch image          │  │    If item is a url AND │
-│     Make an index between each item in the current row and its associated column header (the first row)│    │                      │  │                         │
-│                                                                                                        │    │ replace url with     │  │    If MIMEtype is /image│
-│     Give this index and the template copy to find_and_replace ─────────────────────────────────────────│─┐  │  data URI scheme     │  │                         │
-│                                                                                                        │ │  │  (This encodes the   │  │    Return TRUE          │
-│     Save the new html file and move on the next row │                                                  │ │  │  image directly in   │  │                         │
-│                                                     │                                                  │ │  │  the html)           │  └─────────────────────────┘
-└─────────────────────────────────────────────────────┼──────────────────────────────────────────────────┘ │  │                      │
-                                                      │                                                    │  └──────────────────────┘
-                                                      │                                                    │
-                                                      │                                                    │
-                                                      ▼                                                    │    ┌───────────────────────────────────────────┐
-                                          ┌────────────────────────────────────────────┐                   └──► │find_and_replace                           │
-                                          │Output: {{output_path}}/{{data[i][0]}}.html │                        │                                           │
-                                          └────────────────────────────────────────────┘                        │Find placeholders (columns headers preceded│
-                                                                                                                │ by "~") and replace with the values from  │
-                                                                                                                │ the current row                           │
-                                                                                                                │                                           │
-                                                                                                                │                                           │
-                                                                                                                └───────────────────────────────────────────┘
+
+ ┌─────────────────────────┐┌───────────────────────────┐┌──────────────────────┐
+ │template_path            ││data_path                  ││output_path           │
+ │(default="template.html")││(default="workingdata.csv")││(default="___TEST___")│
+ └─┬───────────────────────┘└──┬────────────────────────┘└──┬───────────────────┘
+   │                           │                            │
+   │   ┌───────────────────────┘                            │
+   │   │                                                    │
+   │   │   ┌────────────────────────────────────────────────┘
+   │   │   │
+   ▼   ▼   ▼
+ ┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+ │ main                                                                                                   │
+ │                                                                                                        │
+ │ Open data_path and load to nested list called data[]                                                   │
+ │                                                                                                        │
+ │ For each row in data (starting from the second row, i.e. data[1], not data[0])                         │
+ │                                                                                                        │
+ │     Make a copy of template_path and name it after the first item  in the current row (i.e data[i][0]) │
+ │                                                                                                        │
+ │     For each item in the current row                                                                   │
+ │                                                                                                        │
+ │         Fetch any linked images using url_to_data_uri──────────────────────────────────────────────────┼──┐
+ │                                                                                                        │  │
+ │     Make an index between each item in the current row and its associated column header (the first row)│  │
+ │                                                                                                        │  │
+ │     Give this index and the template copy to find_and_replace─┐                                        │  │
+ │                                                               │                                        │  │
+ │     Save the new html file and move on the next row           │                                        │  │
+ │                           │                                   │                                        │  │
+ └───────────────────────────┼───────────────────────────────────┼────────────────────────────────────────┘  │
+                             │                    ┌──────────────┘                                           │
+                             │                    │ ┌──────────────────────┐                                 │
+                             │                    │ │ url_to_data_uri  ◄───┼─────────────────────────────────┘
+                             │                    │ │                      │  ┌─────────────────────────┐
+                             │                    │ │ Check is_image_url◄──│──│─►  is_image_url         │
+                             │                    │ │                      │  │                         │
+                             │                    │ │ Fetch image          │  │    If item is a url AND │
+                             │                    │ │                      │  │                         │
+                             │                    │ │ replace url with     │  │    If MIMEtype is /image│
+                             │                    │ │  data URI scheme     │  │                         │
+                             │                    │ │  (This encodes the   │  │    Return TRUE          │
+                             │                    │ │  image directly in   │  │                         │
+                             │                    │ │  the html)           │  └─────────────────────────┘
+                             │                    │ │                      │
+                             │                    │ └──────────────────────┘
+                             │                    └────────────────────┐
+                             │                      ┌──────────────────┼────────────────────────┐
+                             │                      │find_and_replace  ▼                        │
+                             │                      │                                           │
+                             │                      │Find placeholders (columns headers preceded│
+                             │                      │ by "~") and replace with the values from  │
+                             │                      │ the current row                           │
+                             │                      │                                           │
+                             │                      │                                           │
+                             ▼                      └───────────────────────────────────────────┘
+
+      ┌────────────────────────────────────────────┐
+      │Output: {{output_path}}/{{data[i][0]}}.html │
+      └────────────────────────────────────────────┘
+
