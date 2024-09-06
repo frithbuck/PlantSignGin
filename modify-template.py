@@ -149,5 +149,5 @@ def main(template_path, data_path, batch_dir):
 if __name__ == "__main__":
     template_path = "template.html"
     data_path = "workingdata.csv"
-    output_dir = "___TEST___"
+    output_dir = "signs"
     main(template_path, data_path, output_dir)
