@@ -1,8 +1,8 @@
 ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────┐ 
-│                                                                                                           │ 
-│  Basic Concept                                                                    ┌────►  Purple.html     │ 
-│                                                                                   │      ┌──────────────┐ │ 
-│                                                                                   │      │              │ │ 
+│_Basic Concept_____________________________________________________________________________________________│ 
+│                                                                                   ┌────►  Purple.html     │ 
+│     User provides an HTML template and a CSV file (spreadsheet)                   │      ┌──────────────┐ │ 
+│     Each row of the spreadsheet is used to populate a unique HTML file            │      │              │ │ 
 │                                                                                   │      │ Purple       │ │ 
 │                                                                                   │      │              │ │ 
 │                                                                                   │      │ Grape        │ │ 
@@ -50,24 +50,35 @@
 │                                                                                                           │ 
 │                                                                                                           │ 
 └───────────────────────────────────────────────────────────────────────────────────────────────────────────┘ 
+___________________________________________________________________________________________________
+___CSV Format______________________________________________________________________________________
+Any spreadsheet software worth its salt will export to .csv, Use whichever you prefer. The first row 
+(called row "0" in Python) is your column headers. They correspond to the placeholders on your 
+template. The rest of the spreadsheet is for your data. Each populated row will trigger a new copy 
+of the HTML template. It matches the text in each column header to placeholders in the template, 
+then it replaces the placeholder with whatever is in the column on the current row. Each new HTML 
+file is named after the first entry in that row (modified slightly to ensure it is safe to use as 
+a file name).
 
-CSV Format
-Any spreadsheet software worth its salt will export to .csv, Use whichever you prefer. The first row (called row "0" in Python) is your column headers. They
-correspond to the placeholders on your template. The rest of the spreadsheet is for your data. Each populated row will trigger a new copy of the HTML template.
-It matches the text in each column header to placeholders in the template, then it replaces the placeholder with whatever is in the column on the current row. Each
-new HTML file is named after the first entry in that row (modified slightly to ensure it is safe to use as a file name).
+Headers can have any name as long as it matches something in the template. Image URLs are 
+automatically detected, images are downloaded, and encoded into the HTML via data URI scheme. 
+To include a QR code, add a column with header "QR_TARGET" and give each row a directory 
+like "https://example.com/files/" (it can be the same directory for all rows). The resulting 
+QR code image will point to the HTML file in that directory. For example if the first entry on 
+a row is "Foo", the resulting HTML file will be "Foo.html", and the QR code will point 
+to "http://example.com/files/foo.html" (or whichever directory you provide under 
+the "QR_TARGET" column).
 
-Headers can have any name as long as it matches something in the template. Image URLs are automatically detected, images are downloaded, and encoded into the HTML
-via data URI scheme. To include a QR code, add a column with header "QR_TARGET" and give each row a directory like "https://example.com/files/" (it can be the same
-directory for all rows). The resulting QR code image will point to the HTML file in that directory. For example if the first entry on a row is "Foo", the resulting
-HTML file will be "Foo.html", and the QR code will point to "http://example.com/files/foo.html" (or whichever directory you provide under the "QR_TARGET" column).
+Note that the program only reads the CSV file. Data from the CSV is edited in the script but 
+the file you provide is never modified.
 
-Note that the program only reads the CSV file. Data from the CSV is edited in the script but the file you provide is never modified.
-
-Template Format
-The template HTML can have any format. The program runs a simple find-and-replace function on the raw HTML text. To avoid unintended edits (such as the "id" or "alt"
-fields) it only replaces items preceded by a tilde "~". For example, if your spreadsheet has a column header called "Color", for each row of the spreadhseet it will
-copy the template, search the copy for the string "~Color", and replace it with whatever is on that row under the "Color" column.
+___________________________________________________________________________________________________
+___Template Format_________________________________________________________________________________
+The template HTML can have any format. The program runs a simple find-and-replace function on the 
+raw HTML text. To avoid unintended edits (such as the "id" or "alt" fields) it only replaces 
+items preceded by a tilde "~". For example, if your spreadsheet has a column header called "Color", 
+for each row of the spreadhseet it will copy the template, search the copy for the string "~Color", 
+and replace it with whatever is on that row under the "Color" column.
 
 Placeholders for text might look something like this:
 
@@ -79,7 +90,8 @@ For images, the placeholder should be in the source ("src") argument:
                                                 ^^^^^^^^
 Note that the program only reads and copies the template. It does not edit the template itself.
 
-Program Flow
+___________________________________________________________________________________________________
+___Program Flow____________________________________________________________________________________
 
  ┌─────────────────────────┐┌───────────────────────────┐┌──────────────────────┐
  │template_path            ││data_path                  ││output_path           │
