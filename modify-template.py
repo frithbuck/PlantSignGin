@@ -1,6 +1,8 @@
 import csv
+import pandas as pd
 import os
 import re
+import json
 import mimetypes
 import base64
 import requests
@@ -86,27 +88,26 @@ def findAndReplace(file_path, replacements):
 
 def main(template_path, data_path, batch_dir):
     # Read data from CSV file into a nested list
-    with open(data_path, newline='') as csvfile:
-        reader = csv.reader(csvfile)
-        data = list(reader)
+    # with open(data_path, newline='') as csvfile:
+    #     reader = csv.reader(csvfile)
+    #     data = list(reader)
     count = 0
 
-    headers = []
-    for header in data[0]:
-        headers.append('['+header+']')
-
+    # Use pandas to read the CSV file as a list of dicts
+    df = pd.read_csv(data_path)
+    all_data = df.to_dict(orient='records')
 
     #data[0] = ['[' + item for item in data[0] + ']']
-    # Starting from the second row, for each row i in data[i]
-    for i in range(1, len(data)):
+    # Starting from the second row, for each row i in row
+    for sign_data in all_data:
         # Create the directory if it doesn't exist
-        i_name = re.sub(r'[^\w\-_.]', '_', data[i][0]) # This regex makes sure the string is safe to use as a filename
-        i_dir = batch_dir
-        if not os.path.exists(i_dir):
-            os.makedirs(i_dir)
+        filename_base = re.sub(r'[^\w\-_.]', '_', sign_data['Latin']) # This regex makes sure the string is safe to use as a filename
+
+        if not os.path.exists(batch_dir):
+            os.makedirs(batch_dir)
 
         # Path for the HTML file inside the new directory
-        html_file = os.path.join(i_dir, f"{i_name}.html")
+        html_file = os.path.join(batch_dir, f"{filename_base}.html")
 
         # Copy "template.html" content to the new HTML file
         with open(template_path, 'r') as template_file:
@@ -118,27 +119,29 @@ def main(template_path, data_path, batch_dir):
 
         # Prepare the replacements dictionary
         replacements = {}
-        for j in range(len(data[i])):
 
-            if data[0][j] == CUSTOM_TARGETS['qr']:
+        for key, value in sign_data.items():
+            if key == CUSTOM_TARGETS['qr']:
                 try:
-                    target = f"{data[i][j]}{i_name}.html"
+                    target = f"{value}{filename_base}.html"
                     qr = qr_code_to_base64(target)
-                    data[i][j] = qr
+                    value = qr
                 except Exception as e:
                     print(f"Error: QRCode: {e}")
 
-            if is_image_url(data[i][j]):
+            if is_image_url(value):
                 try:
-                    data[i][j] = url_to_data_uri(data[i][j])
+                    value = url_to_data_uri(value)
                 except Exception as e:
                     print(f"Error: Image: {e}")
 
-            replacements[headers[j]] = data[i][j]
+            replacements[f"[{key}]"] = value
+
+        #print(json.dumps(replacements, indent=4))
 
         # Replace the placeholders in the HTML file
         findAndReplace(html_file, replacements)
-        z = f"{count}/{len(data)-1}"
+        z = f"{count}/{len(all_data)}"
 
     print(f"Processed {count} files.")
     return z
