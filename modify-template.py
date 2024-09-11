@@ -11,7 +11,7 @@ from io import BytesIO
 from urllib.parse import urlparse
 
 CUSTOM_TARGETS = {
-    'qr': '[QR_TARGET]'
+    'qr': 'QR_TARGET'
 }
 
 

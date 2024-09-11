@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+@page {
+    size: 8.5in 11in;
+    margin: 0.5in;
+    }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    }
+.image-container {
+    max-height: 295px;
+    height: auto;
+    text-align: center;
+    }
+img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    max-width: 100%; /* Ensure images don't overflow */
+    }
+h1, h2 {
+    margin: 0;
+    padding: 5px 0;
+    font-size: 30px;
+    text-align: center;
+    }
+.text-container {
+    text-align: center;
+    }
+p.PlantDescription {
+    width: 95%;
+    min-height: 100px;
+    max-height: 200px;
+    max-width: 800px;
+    text-align: left;
+    overflow-wrap: break-word;
+    border: 1px solid black;
+    font-size: 20px;
+    }
+p.details {
+    margin-left: 10%;
+    font-size: 20px;
+    text-align: left;
+    line-height: 1.5;
+    }
+</style>
+</head>
+<body>
+
+<h1 style="text-align: center;"><strong>[Common]</strong></h1>
+<h2 style="text-align: center;"><em>[Latin]</em></h2>
+<div class="image-container">
+<img id="Image_1" alt="Image_1" style="max-height: 290px; max-width: 45%; object-fit: contain;" src="[Image 1]">
+<img id="image_2" alt="Image_1" style="max-height: 290px; max-width: 45%; object-fit: contain;" src="[Image 2]">
+</div>
+<div class="text-container">
+<p class="PlantDescription" id="PlantDescription" style="text-align: left;">[Description]<br />
+<p class="details"><strong>Type:</strong> [Plant Type]<br />
+<strong>Height:</strong> <span id="height"></span><br />
+<strong>Spread:</strong> [Spread]<br />
+<strong>Light:</strong> [Exposure]<br />
+<strong>Water:</strong> [Moisture]<br />
+<strong>Drainage:</strong> [Soil Conditions]<br /></p>
+</div>
+<img id="logo" src="https://lh6.googleusercontent.com/SI8LD8eBqDEVTyC-jCEnVr9CxYzaN92ceIB-8qSynCkxgI1Gkf6_QTh174NeqKCcHbXEBQjwrBxew5tR1mgklCX4MXMj8VH_xoBlTx2cIGfICCfeN5Z20hRBGlhDkOqAkA=w407" alt="Logo" style="max-width: 50%;">
+<img id="QRcode" src="[QR_TARGET]" alt="QRcode" style="height: 150px; width: 150px; margin-left: 150px;">
+
+
+<script>
+// Adjust font size to fit text within the box
+function adjustFontSize() {
+    const PlantDescription = document.getElementById('PlantDescription');
+    const images = [
+        document.getElementById('Image_1'),
+        document.getElementById('Image_2'),
+        document.getElementById('logo')
+        ];
+    let fontSize = 14; // Start with default font size
+    const minFontSize = 8; // Minimum readable font size
+    let shrinkFactor = 1.0; // Start with no shrinkage
+
+    // Reduce font size until it fits
+    while (PlantDescription.scrollHeight > PlantDescription.clientHeight && fontSize > minFontSize) {
+        fontSize--;
+        PlantDescription.style.fontSize = fontSize + 'px';
+        }
+
+    // If the font size is minimized, start shrinking images
+    while (document.body.scrollHeight > window.innerHeight && shrinkFactor > 0.5) {
+        shrinkFactor -= 0.05;
+        images.forEach(image => {
+            image.style.width = (image.naturalWidth * shrinkFactor) + 'px';
+            image.style.height = (image.naturalHeight * shrinkFactor) + 'px';
+            });
+        }
+        }
+        window.onload = adjustFontSize;
+        window.onresize = adjustFontSize;
+</script>
+
+</body>
+</html>
+
